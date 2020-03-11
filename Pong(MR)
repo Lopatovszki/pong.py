@@ -1,0 +1,107 @@
+import turtle
+
+w = turtle.Screen()
+
+#labda
+l = turtle.Turtle()
+l.shape("circle")
+l.penup()
+
+#csicskító
+bcs = turtle.Turtle()
+bcs.shape("square")
+bcs.shapesize(27,1)
+bcs.hideturtle()
+bcs.penup()
+bcs.goto(460,0)
+
+#csicskító
+jcs = turtle.Turtle()
+jcs.shape("square")
+jcs.shapesize(27,1)
+jcs.hideturtle()
+jcs.penup()
+jcs.goto(-460,0)
+
+
+#bal_ütő
+b = turtle.Turtle()
+b.color("brown")
+b.shape("square")
+b.shapesize(5,1)
+b.penup()
+b.goto(-460,0)
+
+#jobb_ütő
+j = turtle.Turtle()
+j.color("brown")
+j.shape("square")
+j.shapesize(5,1)
+j.penup()
+j.goto(460,0)
+
+# das ist bal_ütő mozgás
+def b_fel():
+    y = b.ycor()
+    if y < 350:
+        y = y + 50
+    b.sety(y)
+    
+def b_le():
+    y = b.ycor()
+    if y > -350:
+        y = y - 50
+    b.sety(y)
+    
+# das ist jobb_ütő mozgás    
+def j_fel():
+    y = j.ycor()
+    if y < 350:
+        y = y + 50
+    j.sety(y)
+    
+def j_le():
+    y = j.ycor()
+    if y > -350:
+        y = y - 50
+    j.sety(y)
+    
+#billentyűzet    
+w.onkey(b_fel,"w")
+w.onkey(b_le,"s")
+w.onkey(j_fel,"Up")
+w.onkey(j_le,"Down")
+
+#hallgasram 
+w.listen()
+#pontozás
+if l.xcor()  < bcs.xcor():
+    print("anyád se szeret")
+    
+if l.xcor() >  jcs.xcor():
+    print("anyád se szeret 2 ")
+
+# Das ist labda mozgás
+y2=1
+x2=1
+while True:
+     
+    l.setx(l.xcor()+x2)
+    l.sety(l.ycor()+y2)
+    
+    if l.ycor() > 390:
+        l.sety(390)
+        y2=y2*-1
+    
+    if l.ycor() < -390:
+        l.sety(-390)
+        y2=y2*-1
+        
+    if j.xcor()-20 < l.xcor() < j.xcor() and j.ycor()-25 < l.ycor() < j.ycor() +25: 
+        l.setx(j.xcor()-30)
+        x2=x2*-1
+    
+    if b.xcor()+20 > l.xcor() > b.xcor() and b.ycor()-25 < l.ycor() < b.ycor() +25: 
+        l.setx(b.xcor()+30)
+        x2=x2*-1
+    
